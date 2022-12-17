@@ -67,15 +67,18 @@ class main():
         shortcut.save()
 
     def getDiscordUserInfo(self, discordId):
-        headers = {
-        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:55.0) Gecko/20100101 Firefox/55.0',
-        }
-        r = requests.get(f'https://api.discord.name/api/user/{discordId}', headers=headers)
-        x = json.loads(r.text)
-        id = str(x['data']["id"])
-        username = str(x['data']["username"]).split('#',1)[0]
-        icon = x['data']["avatar"]
-        return [id,username,icon]
+        try:
+            headers = {
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:55.0) Gecko/20100101 Firefox/55.0',
+            }
+            r = requests.get(f'https://discordlookup.mesavirep.xyz/v1/{discordId}', headers=headers)
+            x = json.loads(r.text)
+            id = str(x["id"])
+            username = str(x["tag"]).split('#',1)[0]
+            icon = x["avatar"]['link']
+            return [id,username,icon]
+        except Exception as e:
+            pass
 
     def previewClip(self, clip):
         os.startfile(clip)
