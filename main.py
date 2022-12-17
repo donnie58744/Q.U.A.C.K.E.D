@@ -14,8 +14,6 @@ import signal
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
-discord_webhook_url=''
-
 class main():
     username = ''
     avatar = ''
@@ -434,10 +432,12 @@ class Ui(QMainWindow):
     def sharingSettingsScreen(self):
         uic.loadUi(dir_path+'/files/sharingSettingsScreen.ui', self)
         self.setupSettingsScreenBtns()
+        self.webhookUrlTxtBox.setText(main().getConfig(key='discord_webhook_url'))
         self.displayNameTxtBox.setText(main().getConfig(key='username'))
         self.avatarUrlTxtBox.setText(main().getConfig(key='avatar_url'))
         self.applyBtn.clicked.connect(lambda: main().writeConfig(key='username', value=self.displayNameTxtBox.text()))
         self.applyBtn.clicked.connect(lambda: main().writeConfig(key='avatar_url', value=self.avatarUrlTxtBox.text()))
+        self.applyBtn.clicked.connect(lambda: main().writeConfig(key='discord_webhook_url', value=self.webhookUrlTxtBox.text()))
         self.cancelBtn.clicked.connect(self.settingsScreen)
         self.autoFindBtn.clicked.connect(self.autoFindBtnClicked)
 
@@ -467,6 +467,7 @@ class Ui(QMainWindow):
         self.msgTxtBox.setVisible(False)
         QtTest.QTest.qWait(500)
         try:
+            discord_webhook_url=main().getConfig(key='discord_webhook_url')
             webhook = SyncWebhook.from_url(discord_webhook_url)
             webhook.send(str(self.msgTxtBox.text())+"\n"+"\n"+"`Fully Compressed And Sent With Q.U.A.C.K.E.D`", file=File(rf'{main.filename}'), username=main().getConfig(key='username'), avatar_url=main().getConfig(key='avatar_url'))
             self.mainLabel.setText('<html><head/><body><p><span style=" font-size:12pt; font-weight:600;">Sent To Discord!</span></p><p><span style=" font-size:11pt;">This Window Will Automatically Close</span></p></body></html>')

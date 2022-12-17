@@ -1,9 +1,10 @@
 {
     "version": "0.0.5 Alpha",
-    "username": "",
-    "avatar_url": "",
     "capture_folder": "",
     "yesBtnEnabled": "True",
     "handbrakeCommand": "--optimize,--unsharp,verystrong,--unsharp-tune,verycoarse,--deinterlace,skip-spatial,--width,1280,--height,720,-e,x264,--encoder-preset,slower,--encoder-tune,film,--encoder-profile,high,--encoder-level,5.2,--cfr,--two-pass,--turbo,--ab,96",
-    "windowsStartup": "False"
+    "windowsStartup": "False",
+    "username": "",
+    "avatar_url": "",
+    "discord_webhook_url": ""
 }
