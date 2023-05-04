@@ -69,7 +69,7 @@ class main():
             headers = {
             'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:55.0) Gecko/20100101 Firefox/55.0',
             }
-            r = requests.get(f'https://discordlookup.mesavirep.xyz/v1/{discordId}', headers=headers)
+            r = requests.get(f'https://discordlookup.mesavirep.xyz/v1/user/{discordId}', headers=headers)
             x = json.loads(r.text)
             id = str(x["id"])
             username = str(x["tag"]).split('#',1)[0]
