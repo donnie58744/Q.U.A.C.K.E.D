@@ -21,6 +21,7 @@
 - Automatic clip detection and compression
 - Manual clip compression
 - Custom Discord message
+- Windows Tray Icon
 
 ### Compatibility
 
